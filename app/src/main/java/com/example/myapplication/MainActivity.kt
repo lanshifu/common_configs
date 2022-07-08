@@ -9,6 +9,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.room.Room
+import com.example.myapplication.dao.AppDatabase
+import com.example.myapplication.dao.User
 import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +35,11 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        var db = Room.databaseBuilder(getApplicationContext(),
+        AppDatabase::class.java,"database-name").build()
+        db.userDao().insert(User())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
