@@ -1,0 +1,11 @@
+apply from: '../config/common_kotlin_library.gradle'
+apply from: 'maven_publish.gradle'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}

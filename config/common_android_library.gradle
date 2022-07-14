@@ -1,0 +1,20 @@
+//定义一些通用的版本配置，统一 minSdk
+apply plugin: 'kotlin-android'
+apply plugin: 'com.android.library'
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 29
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}

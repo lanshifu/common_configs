@@ -1,0 +1,96 @@
+apply plugin: 'maven-publish'
+
+
+def isReleaseBuild() {
+    return version.contains("snapshots") == false
+}
+
+def getRepositoryUrl(Properties props) {
+    if (isReleaseBuild()) {
+        return getReleaseRepositoryUrl(props)
+    } else {
+        return getSnapshotRepositoryUrl(props)
+    }
+}
+
+def getReleaseRepositoryUrl(Properties props) {
+    if (hasProperty('RELEASE_REPOSITORY_URL')) {
+        return RELEASE_REPOSITORY_URL
+    } else if (props['RELEASE_REPOSITORY_URL'] != null) {
+        return props['RELEASE_REPOSITORY_URL']
+    } else {
+        return "http://xxx/"
+    }
+}
+
+def getSnapshotRepositoryUrl(Properties props) {
+    if (hasProperty('SNAPSHOT_REPOSITORY_URL')) {
+        return RELEASE_REPOSITORY_URL
+    } else if (props['SNAPSHOT_REPOSITORY_URL'] != null) {
+        return props['SNAPSHOT_REPOSITORY_URL']
+    } else {
+        return "http://xxx/"
+    }
+}
+
+def getRepositoryUsername(Properties props) {
+    try {
+        return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : props['NEXUS_USERNAME']
+    } catch (Exception ignored) {
+        println("需要在root project的local.properties 声明 NEXUS_USERNAME=你的账号")
+        return ""
+    }
+}
+
+def getRepositoryPassword(Properties props) {
+    try {
+        return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : props['NEXUS_PASSWORD']
+    } catch (Exception ignored) {
+        println("需要在root project的local.properties 声明 NEXUS_PASSWORD=你的密码")
+        return ""
+    }
+}
+
+
+group = 'com.example.kotlinlibrary'
+version = '1.0.0'
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier.set("sources")
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'kotlinlibrary'
+            from components.java
+            artifact sourcesJar
+            pom {
+                name = 'compress'
+                description = '适配Gradle Plugin 7'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+            }
+        }
+    }
+    repositories {
+        maven {
+            def props = new Properties()
+            rootProject.file('local.properties').withInputStream { props.load(it) }
+            url = uri('../repo')
+//            url = getRepositoryUrl(props)
+//            allowInsecureProtocol true
+//            credentials {
+//                username getRepositoryUsername(props)
+//                password getRepositoryPassword(props)
+//            }
+        }
+    }
+}
+

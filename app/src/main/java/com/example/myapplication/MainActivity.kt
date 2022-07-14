@@ -10,9 +10,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.room.Room
+import com.example.androidlibrary.AndroidLibraryTest
+import com.example.javalibrary.JavaLibraryMyClass
 import com.example.myapplication.dao.AppDatabase
 import com.example.myapplication.dao.User
 import com.example.myapplication.databinding.ActivityMainBinding
+import kotlin.concurrent.thread
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,9 +39,19 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
         }
 
-        var db = Room.databaseBuilder(getApplicationContext(),
-        AppDatabase::class.java,"database-name").build()
-        db.userDao().insert(User())
+        thread {
+            try {
+                var db = Room.databaseBuilder(getApplicationContext(),
+                    AppDatabase::class.java,"database-name").build()
+                db.userDao().insert(User())
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+
+        AndroidLibraryTest.print()
+        JavaLibraryMyClass.print()
 
     }
 

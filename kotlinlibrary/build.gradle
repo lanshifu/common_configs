@@ -1,0 +1,7 @@
+apply from: '../config/common_kotlin_library.gradle'
+apply from: 'maven_publish_jar.gradle'
+
+dependencies {
+//    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+}
