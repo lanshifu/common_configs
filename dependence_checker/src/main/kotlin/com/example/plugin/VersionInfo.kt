@@ -1,4 +1,4 @@
-package com.tt.plugin
+package com.example.plugin
 
 /**
  * @author lanxiaobin

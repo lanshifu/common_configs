@@ -1,4 +1,4 @@
-package com.tt.plugin
+package com.example.plugin
 
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.logging.Logger
@@ -8,8 +8,8 @@ object Log {
     private var logger: Logger? = null
 
     fun init(logger: Logger) {
-        if (this.logger == null) {
-            this.logger = logger
+        if (Log.logger == null) {
+            Log.logger = logger
         }
     }
 

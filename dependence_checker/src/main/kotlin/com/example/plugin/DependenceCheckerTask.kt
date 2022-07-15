@@ -1,4 +1,4 @@
-package com.tt.plugin
+package com.example.plugin
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.artifacts.result.DependencyResult
@@ -140,7 +140,7 @@ open class DependenceCheckerTask : DefaultTask() {
     }
 
 
-    fun reportDepInfo(depMap:Map<String, Set<VersionInfo>> ,  abortBuild:Boolean) {
+    fun reportDepInfo(depMap:Map<String, Set<VersionInfo>>, abortBuild:Boolean) {
 
         val result:MutableList<Set<VersionInfo>> = mutableListOf()
         depMap.values.forEach {

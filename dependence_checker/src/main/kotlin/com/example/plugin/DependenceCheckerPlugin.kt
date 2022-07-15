@@ -1,4 +1,4 @@
-package com.tt.plugin
+package com.example.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
