@@ -3,19 +3,19 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp' version '1.6.0-1.0.1'
 
-    id 'dependence_checker'
+//    id 'dependence_checker'
 }
 
-dependenceChecker {
-    variant=""
-    abortBuild=false
-    whiteList = [
-            "androidx",
-//            "org",
-            "com.google"
-    ]
-
-}
+//dependenceChecker {
+//    variant=""
+//    abortBuild=false
+//    whiteList = [
+//            "androidx",
+////            "org",
+//            "com.google"
+//    ]
+//
+//}
 
 android {
     compileSdk 32

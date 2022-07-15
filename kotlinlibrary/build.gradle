@@ -1,4 +1,5 @@
 apply from: '../config/common_kotlin_library.gradle'
+//apply from: 'https://github.com/lanshifu/common_configs/blob/master/config/common_kotlin_library.gradle'
 apply from: 'maven_publish_jar.gradle'
 
 dependencies {

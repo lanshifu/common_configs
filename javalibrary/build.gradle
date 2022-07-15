@@ -1,2 +1,3 @@
 apply from: '../config/common_java_library.gradle'
+//apply from: 'https://github.com/lanshifu/common_configs/blob/master/config/common_java_library.gradle'
 apply from: 'maven_publish_jar.gradle'
